@@ -1,0 +1,87 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Salary Statement</title>
+    <style>
+        body {
+            background-image: url(aa.jpg);
+            background-repeat: no-repeat;
+            background-size: cover;
+            height: 100vh; /* Changed height to 100vh for better scaling */
+            font-family: Arial, sans-serif;
+            color: red; /* Set body text color */
+        }
+        table {
+            background-color: rgba(255, 255, 255, 0.8); /* Added semi-transparent white background for readability */
+            padding: 20px;
+            border-collapse: collapse;
+        }
+        td {
+            padding: 8px;
+        }
+        input, select {
+            color: blue;
+            background-color: whitesmoke;
+            cursor: pointer;
+            border-radius: 10px;
+            border: 1px solid #ccc;
+            padding: 5px;
+        }
+        .m {
+            color: red; /* Marquee text color */
+        }
+        .a {
+            /* You can add specific styles for the table here if needed */
+        }
+    </style>
+</head>
+<body text="red">
+    <table align="center" border="2" class="a">
+         <tr><td colspan="4"><h1 align="center" class="m"><marquee behavior="scroll" direction="left">Employee Salary Statement</marquee></h1></td></tr>
+         <tr><td>Emp No</td><td><input type="number" placeholder="Enter Emp No"  style="color:blue;background-color:white;cursor: pointer; border-radius: 10px;"  name="emp_no" id="emp_no"></td></tr> 
+         <tr><td>Emp Name</td><td><input type="text" placeholder="Enter Emp Name" style="color:blue;background-color: whitesmoke;border-radius: 10px;cursor: pointer;" name="emp_name" id="emp_name"></td></tr>
+         <tr><td>Designation</td><td><select placeholder="Enter designation" style="color:blue;background-color:whitesmoke;border-radius: 10px;cursor: pointer;">
+            <option value="programmer">Programmer</option><option value="guide">Guide</option><option value="teacher">Teacher</option>
+         </select></td></tr>
+        <tr><td>Company</td><td><input type="text" placeholder="Enter Company Name"style="color:blue;background-color: whitesmoke ;cursor: pointer;border-radius: 10px;" name="cmp" id="cmp_id"></td></tr>
+        <tr><td colspan="2" align="center">Earning</td><td colspan="2" align="center">Deductions</td></tr>
+        <tr><td>Basic Salary</td><td><input type="number" placeholder="Enter Basic Salary" style="color:blue;background-color:whitesmoke;cursor: pointer;
+        border-radius: 10px;" name="bs" id="bs_id"></td><td>PF</td><td><input type="number" placeholder="Enter PF" style="color:blue;background-color:whitesmoke;border-radius: 10px;cursor: pointer;"name="pf" id="pf_id"></td></tr>
+        <tr><td>HRA</td><td><input type="number" placeholder="Enter HRA" style="color:blue;background-color: whitesmoke ;border-radius: 10px;cursor: pointer;" name="hra" id="hra_id"></td><td>Insurance</td><td><input type="number" placeholder="Enter Insurance" style="color:blue;background-color:whitesmoke;border-radius: 10px;cursor: pointer;" name="Ins" id="ins_id"></td></tr>
+    
+        <tr><td>TA</td><td><input type="number" placeholder="Enter TA" style="color:blue;background-color:whitesmoke;border-radius: 10px;cursor: pointer;"name="ta" id="ta_id"></td><td></td><td></td></tr>
+        <tr><td>DA</td><td><input type="number" placeholder="Enter DA" style="color:blue;background-color:whitesmoke;border-radius: 10px;cursor: pointer;"name="da" id="da_id"></td><td></td><td></td></tr>
+        <tr><td>Total Earning</td><td><input type="number" readonly style="cursor: pointer;color:blue;background-color:whitesmoke;border-radius: 10px;" name="total_earning" id="total_earning"></td><td>Total Deduction</td><td><input type="number" readonly style="color:blue;cursor: pointer;background-color:whitesmoke;border-radius: 10px;"name="total_deduction" id="total_deduction"></td></tr>
+        <tr><td>Net Salary</td><td ><input type="number" readonly style="cursor: pointer;color:blue;background-color:whitesmoke;border-radius: 10px;"name="net_salary" id="net_salary"></td></tr>
+         <tr><td colspan="2"><input type="button" value="Calculate" id="calculate_btn" style="cursor: pointer;color:white;background-color:green;border-radius: 10px;"></td></tr> 
+    </table>
+    
+    <script>
+        document.getElementById('calculate_btn').addEventListener('click', function() {
+            // Get values from input fields
+            let basicSalary = parseInt(document.getElementById('bs_id').value) || 0;
+            let hra = parseInt(document.getElementById('hra_id').value) || 0;
+            let ta = parseInt(document.getElementById('ta_id').value) || 0;
+            let da = parseInt(document.getElementById('da_id').value) || 0;
+            let pf = parseInt(document.getElementById('pf_id').value) || 0;
+            let insurance = parseInt(document.getElementById('ins_id').value) || 0;
+
+            // Calculate total earning
+            let totalEarning = basicSalary + hra + ta + da;
+            
+            // Calculate total deduction
+            let totalDeduction = pf + insurance;
+
+            // Calculate net salary
+            let netSalary = totalEarning - totalDeduction;
+
+            // Display results in the output fields
+            document.getElementById('total_earning').value = totalEarning;
+            document.getElementById('total_deduction').value = totalDeduction;
+            document.getElementById('net_salary').value = netSalary;
+        });
+    </script>
+</body>
+</html>
